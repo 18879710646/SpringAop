@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean class="com.org.Aop.MyAdvice" id="myAdvice"/>
+    <bean class="com.org.Service.Impl.ServiceImpl"/>
+    <aop:config>
+<!--         导入增强方法-->
+        <aop:aspect ref="myAdvice">
+<!--               method增强类中的要使用的增强方法名    poincut表示位要在哪里增强execution写法需要这样写,   void 表示为放回值类型     要被增强的类的全限地址    （..）表示任意参数         -->
+            <aop:before method="before" pointcut="execution(void com.org.Service.Impl.ServiceImpl.SelectById(..))"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
